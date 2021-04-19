@@ -1,0 +1,54 @@
+[
+  {
+    "model": "workplace.activitytimersettings",
+    "pk": 1,
+    "fields": {
+      "ended": "17:00:00"
+    }
+  },
+  {
+    "model": "workplace.role",
+    "pk": "admin",
+    "fields": {
+      "label": "\u0410\u0434\u043c\u0438\u043d\u0438\u0441\u0442\u0440\u0430\u0442\u043e\u0440"
+    }
+  },
+  {
+    "model": "workplace.role",
+    "pk": "head",
+    "fields": {
+      "label": "\u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c"
+    }
+  },
+  {
+    "model": "workplace.role",
+    "pk": "staff",
+    "fields": {
+      "label": "\u0421\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a"
+    }
+  },
+  {
+    "model": "workplace.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$180000$MGzJ6tDMGtwM$0gNL2ChZXAucj7Bg3H+eI0acvQqXs1g5jYArlX8DlvY=",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "Admin",
+      "last_name": "Admin",
+      "email": "admin@admin.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2019-02-28T07:39:47.686Z",
+      "middle_name": "",
+      "birthday": null,
+      "mobile": "",
+      "phone": "",
+      "avatar": "",
+      "role": "admin",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

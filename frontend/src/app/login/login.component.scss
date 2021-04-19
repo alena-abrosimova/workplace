@@ -1,0 +1,62 @@
+.login-container {
+  height: 100vh;
+  /* Safari 5.1, iOS 5.0-6.1, Chrome 10-25, Android 4.0-4.3 */
+  background: -webkit-linear-gradient(top right, rgba(91, 103, 120, 0.51), #ffffff);
+  /* Firefox 3.6-15 */
+  background: -moz-linear-gradient(top right, rgba(91, 103, 120, 0.51), #ffffff);
+  /* Opera 11.1-12 */
+  background: -o-linear-gradient(top right, rgba(91, 103, 120, 0.51), #ffffff);
+  /* Opera 15+, Chrome 25+, IE 10+, Firefox 16+, Safari 6.1+, iOS 7+, Android 4.4+ */
+  background: linear-gradient(to top right, rgba(91, 103, 120, 0.51), #ffffff);
+
+  .login-form {
+    height: 360px;
+    width: 360px;
+    border-radius: 4%;
+    background: #4D4545;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+    .field-row {
+      width: 240px;
+
+      .mat-input-element {
+        color: white !important;
+      }
+
+      ::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
+        color: white !important;
+      }
+
+      ::ng-deep .mat-icon-button {
+        color: white !important;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .login-form {
+      border-radius: 0;
+      height: 100vh;
+      width: 100vw;
+    }
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: inset 0 1px 4px 0 transparent, /* Внутренняя тень */
+  inset 0 0 0 50px #4D4545, /* Цвет фона */
+  0 1px transparent !important; /* Наружная тень */
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+::ng-deep mat-form-field.mat-focused {
+  .mat-form-field-ripple {
+    background-color: transparent !important;
+  }
+}
+
+::ng-deep mat-form-field.mat-form-field-invalid {
+  .mat-form-field-ripple {
+    background-color: #94241c !important;
+  }
+}

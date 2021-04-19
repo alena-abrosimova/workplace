@@ -1,0 +1,26 @@
+<div fxLayout="column" fxLayoutGap="4px" class="default-activity-container">
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="calendar-row">
+    <button mat-icon-button color="primary" type="button" (click)="changeWeek(null, -1)">
+      <mat-icon class="head-button-icon">chevron_left</mat-icon>
+    </button>
+
+    <ng-container>
+      <span class="calendar-label" (click)="currentDatepicker.open()">
+        {{ monday | formatDate: weekFormat}} - {{ sunday | formatDate: weekFormat}}
+      </span>
+      <input matInput [matDatepicker]="currentDatepicker" class="display-none" (dateChange)="changeWeek($event)">
+      <mat-datepicker #currentDatepicker class="display-none"></mat-datepicker>
+    </ng-container>
+
+    <button mat-icon-button color="primary" type="button" (click)="changeWeek(null, 1)">
+      <mat-icon class="head-button-icon">chevron_right</mat-icon>
+    </button>
+  </div>
+  <ng-container [entitiesParams]="params" (getEntities)="weekActivities$ = $event"
+                (iResponseChange)="calculateTimeArray($event.results)">
+    <week-activity-card [weekDayArray]="weekArray" [timeArray]="timeArray"
+                        [weekActivities]="weekActivities$ | async"></week-activity-card>
+  </ng-container>
+</div>
+
+<activity-menu [currentDate]="currentDate"></activity-menu>

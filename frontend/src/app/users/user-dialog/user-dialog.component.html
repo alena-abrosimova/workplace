@@ -1,0 +1,62 @@
+<mat-card>
+  <mat-card-title>{{user?.id ? 'Редактирование' : 'Создание'}} пользователя</mat-card-title>
+  <mat-card-content class="default-dialog-container form">
+    <form role="form" [formGroup]="cardForm" fxLayout="column" fxLayoutGap="8px">
+      <div fxLayout="row" fxLayoutGap="8px">
+        <mat-form-field fxFlex="calc(50% - 4px)">
+          <mat-label>Логин</mat-label>
+          <input matInput formControlName="username" placeholder="Введите логин" required>
+          <mat-hint [controlError]="errors('username')" [touched]="touched('username')"></mat-hint>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="calc(50% - 4px)">
+          <mat-label>Пароль</mat-label>
+          <input matInput formControlName="password" placeholder="Введите пароль" [required]="!user?.id"
+                 [type]="passwordHide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="passwordHide = !passwordHide"
+                  [attr.aria-label]="'Hide password'" [attr.aria-pressed]="passwordHide">
+            <mat-icon>{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-hint [controlError]="errors('password')" [touched]="touched('password')"></mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap="8px">
+        <mat-form-field fxFlex="calc(50% - 4px)">
+          <mat-label>Фамилия</mat-label>
+          <input matInput formControlName="lastName" placeholder="Введите фамилию" required>
+          <mat-hint [controlError]="errors('lastName')" [touched]="touched('lastName')"></mat-hint>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="calc(50% - 4px)">
+          <mat-label>Имя</mat-label>
+          <input matInput formControlName="firstName" placeholder="Введите имя" required>
+          <mat-hint [controlError]="errors('firstName')" [touched]="touched('firstName')"></mat-hint>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap="8px">
+        <mat-form-field fxFlex="calc(50% - 4px)">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="Введите email" required>
+          <mat-hint [controlError]="errors('email')" [touched]="touched('email')"></mat-hint>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="calc(50% - 4px)">
+          <mat-label>Роль</mat-label>
+          <mat-select formControlName="role" placeholder="Выберите роль" required>
+            <ng-container [entitiesParams]="roleParams" (getEntities)="roles$ = $event">
+              <mat-option [value]="role.name" *ngFor="let role of roles$ | async">{{role.label}}</mat-option>
+            </ng-container>
+          </mat-select>
+          <mat-hint [controlError]="errors('role')" [touched]="touched('role')"></mat-hint>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="8px">
+    <button mat-stroked-button type="button" color="primary" mat-dialog-close>Отмена</button>
+    <button mat-flat-button type="submit" color="primary" [disabled]="!formValid"
+            [mat-dialog-close]="formRawValue">
+      Сохранить
+    </button>
+  </mat-card-actions>
+</mat-card>

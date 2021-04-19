@@ -1,0 +1,38 @@
+<div class="user-list-container" fxLayout="column" *ngIf="users?.length > 0">
+  <div fxLayout="row" *ngFor="let user of users" class="user-list-card"
+       fxLayoutAlign="flex-start center">
+    <div class="user-avatar">
+      <img [src]="noAvatarUrl" alt="Нет фото" *ngIf="!user?.avatar">
+      <img [src]="user.avatar" alt="Аватар" *ngIf="user?.avatar">
+    </div>
+    <div fxLayout="column" fxLayoutGap="8px" fxFlex>
+      <div fxLayout="row" class="user-list-card-title">
+        <span>{{ user.lastName }} {{ user.firstName }} {{ user.middleName }}</span>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="8px" class="user-list-card-status">
+        <span [ngClass]="{'user-status': true, 'online': user?.online}"></span>
+        <span *ngIf="user?.online">В сети</span>
+        <span *ngIf="!user?.online">
+          <span *ngIf="user?.lastLogin">был(-а) {{user?.lastLogin | dateDistance }}</span>
+          <span *ngIf="!user?.lastLogin">еще не был(-а)</span>
+        </span>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="8px" class="user-list-card-info">
+        <span class="email">{{ user.email }}</span>
+      </div>
+    </div>
+    <div fxLayout="row" *ngIf="isAdmin">
+      <button mat-icon-button color="primary" type="button" (click)="editUser(user)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" type="button" (click)="deleteUser(user)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="user-list-container" fxLayout="column" fxLayoutAlign="center center"
+              *ngIf="!users || users?.length === 0">
+  <p *ngIf="users?.length === 0" class="no-item">Нет данных</p>
+  <mat-spinner *ngIf="!users" color="primary" [diameter]="80" [strokeWidth]="2"></mat-spinner>
+</div>

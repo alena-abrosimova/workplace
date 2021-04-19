@@ -1,0 +1,49 @@
+<div class="activity-container">
+  <div class="activity-header" fxLayout="row">
+    <div fxLayout="column" fxLayoutAlign="center center" *ngFor="let day of weekDayArray" class="header-cell">
+      <span class="header-cell-date">{{day.date | formatDate: weekFormat}}</span>
+      <span class="header-cell-date-mobile">{{day.date | formatDate: weekFormatMobile}}</span>
+      <span>{{day.label}}</span>
+    </div>
+  </div>
+  <div fxLayout="row" class="activity-table" [scrollTop]="scrollTop">
+    <div class="hour-column">
+      <div fxLayout="column">
+        <div fxLayout="row" *ngFor="let time of timeArray" class="hour-row desktop">
+          <div fxLayoutAlign="center center" class="hour-cell" [ngStyle]="{'height': time.height + 'px'}">
+            {{ time.start }}
+          </div>
+          <div class="hour-cell week" *ngFor="let day of weekDayArray; let idx = index" (click)="checkTime(day.date, time.start, idx)"></div>
+        </div>
+
+        <div fxLayout="row" *ngFor="let time of timeArray" class="hour-row mobile">
+          <div fxLayoutAlign="center center" class="hour-cell" [ngStyle]="{'height': time.height + 'px'}">
+            {{ time.start.substr(0, 2) }}
+          </div>
+          <div class="hour-cell week" *ngFor="let day of weekDayArray; let idx = index" (click)="checkTime(day.date, time.start, idx)"></div>
+        </div>
+      </div>
+    </div>
+    <div fxFlex>
+      <div fxLayout="row" class="activity-column-row">
+        <div fxLayout="column" class="activity-column" *ngFor="let day of weekActivities">
+          <div fxLayout="column" fxLayoutAlign="center center" class="activity-row" (click)="openViewDialog(activity)"
+               *ngFor="let activity of day.activities"
+               [ngStyle]="{
+               'height': activity.height,
+               'margin-bottom': activity.marginBottom,
+               'margin-top': activity.marginTop,
+               'background-color': activity.backgroundColor
+                }">
+            <div>{{activity.label}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div fxLayout="row" class="default-activity-loading" fxLayoutAlign="center center" *ngIf="!weekActivities">
+  <mat-spinner color="primary" [diameter]="80" [strokeWidth]="2"></mat-spinner>
+</div>
+

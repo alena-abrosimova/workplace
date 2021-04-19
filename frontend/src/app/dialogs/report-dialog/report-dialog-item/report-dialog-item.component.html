@@ -1,0 +1,15 @@
+<span fxFlex="40px" fxLayoutAlign="center center" [ngSwitch]="item.state">
+  <mat-icon *ngSwitchCase="state.success" color="accent">done</mat-icon>
+  <mat-icon *ngSwitchCase="state.error" color="warn">error</mat-icon>
+  <mat-spinner *ngSwitchDefault color="accent" [diameter]="20" [strokeWidth]="2"></mat-spinner>
+</span>
+<span fxFlex>{{item.label}}</span>
+<span fxFlex="160px">{{item.created | formatDate : 'dd.MM.yyyy HH:mm:ss'}}</span>
+<button mat-icon-button color="accent" [disabled]="item.state !== state.success" (click)="downloadFile()"
+        matTooltip="Скачать" matTooltipClass="custom-tooltip">
+  <mat-icon>vertical_align_bottom</mat-icon>
+</button>
+<button mat-icon-button color="warn" matTooltip="Отмена" matTooltipClass="custom-tooltip"
+        (click)="deleteEvent.emit()">
+  <mat-icon>clear</mat-icon>
+</button>

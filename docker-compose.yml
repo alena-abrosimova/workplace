@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+
+  database:
+    image: "postgres:9.6"
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  web:
+    image: workplace/web:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      #target: web
+    command: ["wait-for-postgres.sh", "database", "supervisord", "-n"]
+    environment:
+      - PYTHONPATH=/app/backend
+      - DJANGO_SETTINGS_MODULE=backend.settings.production
+      - DATABASE_NAME=workplace
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=''
+      - DATABASE_HOST=database
+      - DATABASE_PORT=5432
+    ports:
+      - "80:80"
+    links:
+      - database
+    depends_on:
+      - database

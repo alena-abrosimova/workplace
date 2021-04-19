@@ -1,0 +1,26 @@
+<div fxLayout="column" fxLayoutGap="8px">
+  <div fxLayout="row" fxLayoutGap="8px">
+    <span class="default-label bold font-size120">Время:</span>
+    <span class="default-value font-size120">{{ item.start }} - {{item.end}}</span>
+  </div>
+  <div fxLayout="row" fxLayoutGap="8px" *ngIf="item.project">
+    <span class="default-label bold font-size120">Проект:</span>
+    <span class="default-value font-size120">{{ item.project.name }}</span>
+  </div>
+  <div fxLayout="row" fxLayoutGap="8px" *ngIf="item.direction">
+    <span class="default-label bold font-size120">Направление:</span>
+    <span class="default-value font-size120">{{ item.direction.name }}</span>
+  </div>
+  <div fxLayout="row" fxLayoutGap="8px" *ngIf="item.type">
+    <span class="default-label bold font-size120">Вид работы:</span>
+    <span class="default-value font-size120">{{ item.type.name }}</span>
+  </div>
+  <div fxLayout="row" fxLayoutGap="8px" *ngIf="item.description">
+    <span class="default-label bold font-size120">Описание:</span>
+    <span class="default-value font-size120">{{ item.description }}</span>
+  </div>
+  <div fxLayout="row" fxLayoutGap="8px" *ngIf="item.task">
+    <span class="default-label bold font-size120">Задача:</span>
+    <span class="default-value font-size120">{{ item.task }}</span>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+.user-list-container {
+  border-top: 1px solid #e5e5e5;
+  height: calc(100vh - 140px);
+  overflow: auto;
+
+  .user-list-card {
+    border-bottom: 1px solid #e5e5e5;
+    word-break: break-word;
+    padding: 8px;
+    width: 100%;
+
+    .user-avatar {
+      border-radius: 50%;
+      margin-right: 8px;
+      height: 78px;
+      width: 78px;
+
+      img {
+        border-radius: inherit;
+        height: inherit;
+        width: inherit;
+      }
+    }
+
+    .user-list-card-title {
+      font-size: 1.2em;
+      color: #45484c;
+      font-weight: 600;
+      cursor: default;
+    }
+
+    .user-list-card-status {
+      cursor: default;
+      color: #4e4e4e;
+
+      .user-status {
+        background-color: #7b7b7b;
+        border: 1px solid #acacac;
+        margin-bottom: 1px;
+        border-radius: 50%;
+        height: 10px;
+        width: 10px;
+
+        &.online {
+          background-color: #49bd07;
+          border: 1px solid #5bcd07;
+        }
+      }
+    }
+
+    .user-list-card-info {
+      cursor: default;
+      color: #4e4e4e;
+
+      .email {
+        color: #8e4b4b;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .user-list-card {
+      padding: 4px;
+
+      .user-list-card-title {
+        font-size: 1em;
+      }
+
+      .user-list-card-status {
+        font-size: 0.8em;
+      }
+    }
+  }
+}

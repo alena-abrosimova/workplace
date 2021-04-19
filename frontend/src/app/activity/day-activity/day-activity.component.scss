@@ -1,0 +1,48 @@
+.component-container {
+  width: calc(100vw - 120px);
+  margin-left: 120px;
+
+  .calendar-row {
+    font-size: 1.5em;
+    padding-top: 8px;
+    text-transform: uppercase;
+    color: #373c44;
+
+    span {
+      background: rgba(55, 60, 68, 0.2);
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      padding: 0 8px;
+    }
+
+    .display-none {
+      left: calc(50vw - 148px);
+      position: fixed;
+      display: block;
+      border: none;
+      top: 96px;
+      height: 0;
+      width: 0;
+    }
+  }
+
+  @media screen and (max-width: 1000px)  {
+    width: 100vw;
+    margin-left: 0;
+
+    .calendar-row {
+      font-size: 1.1em;
+      padding-top: 0;
+
+      .display-none {
+        top: 72px;
+      }
+    }
+
+    .menu-row {
+      display: flex !important;
+    }
+  }
+
+}

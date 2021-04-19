@@ -1,0 +1,40 @@
+.report-dialog-card {
+  padding: 4px !important;
+  position: fixed !important;
+  bottom: 0 !important;
+  right: 88px !important;
+  background-color: #d26e6e !important;
+  color: white !important;
+  width: 600px !important;
+  border: none;
+
+  mat-card-content, mat-card-actions {
+    display: none !important;
+  }
+
+  mat-card-title {
+    cursor: default;
+    margin: 0 !important;
+    font-size: 16px !important;
+    font-weight: 400;
+  }
+}
+
+.mat-card {
+  border: 2px solid #d26e6e;
+}
+
+report-dialog-item {
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  font-size: 1.2em;
+  cursor: default;
+  border-bottom: 1px solid #e0e0e0;
+  place-content: center flex-start;
+  align-items: center;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}

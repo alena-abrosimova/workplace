@@ -1,0 +1,51 @@
+<mat-table fxFlex [dataSource]="dataSource" matSort [matSortActive]="sortActive"
+           [matSortDirection]="sortDirection">
+  <ng-container matColumnDef="label">
+    <mat-header-cell *matHeaderCellDef mat-sort-header [disableClear]="true" fxFlex>Наименование
+    </mat-header-cell>
+    <mat-cell *reportTableData="let element" fxFlex>{{ element?.label || ' - '}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="started">
+    <mat-header-cell *matHeaderCellDef mat-sort-header [disableClear]="true" fxFlex="168px">Дата начала (отчёт)
+    </mat-header-cell>
+    <mat-cell *reportTableData="let element" fxFlex="168px">{{ element?.started | formatDate }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="ended">
+    <mat-header-cell *matHeaderCellDef mat-sort-header [disableClear]="true" fxFlex="192px">Дата окончания (отчёт)
+    </mat-header-cell>
+    <mat-cell *reportTableData="let element" fxFlex="192px">{{ element?.ended | formatDate }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="created">
+    <mat-header-cell *matHeaderCellDef mat-sort-header [disableClear]="true" fxFlex="180px">Дата создания
+    </mat-header-cell>
+    <mat-cell *reportTableData="let element" fxFlex="180px">
+      {{ element?.created | formatDate : 'dd.MM.yyyy HH:mm:ss'}}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef fxFlex="100px"></mat-header-cell>
+    <mat-cell *reportTableData="let element" fxFlex="100px">
+      <button mat-icon-button color="accent" type="button" (click)="downloadFile(element.id)">
+        <mat-icon>vertical_align_bottom</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" type="button" (click)="deleteItem(element.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<div fxFlex="100%" class="default-no-data" *ngIf="!dataSource.data.length">Нет данных</div>
+
+<mat-paginator [length]="params?.paginationOption.length"
+               [pageSize]="params?.paginationOption.limit" [pageSizeOptions]="[10, 20, 50]"
+               [pageIndex]="params.paginationOption.offset / params.paginationOption.limit"
+               [showFirstLastButtons]="true" (page)="paginatorClicked()">
+</mat-paginator>

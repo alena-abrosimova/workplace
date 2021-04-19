@@ -1,0 +1,80 @@
+<div fxLayout="column" class="default-page-container">
+  <div fxLayout="row" fxLayoutAlign="center center" class="default-page-header">
+    <p>Профиль пользователя</p>
+  </div>
+  <profile-avatar></profile-avatar>
+
+  <div class="profile-card-container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="4px">
+    <form role="form" [formGroup]="cardForm" fxLayout="column" fxLayoutGap="4px" class="profile-form">
+      <div fxLayout="row" fxLayoutGap="16px" class="profile-row">
+        <mat-form-field class="profile-field">
+          <mat-label>Логин</mat-label>
+          <input matInput placeholder="Введите логин" formControlName="username" required>
+          <mat-hint [controlError]="errors('username')" [touched]="touched('username')"></mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="profile-field">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Введите email" formControlName="email" type="email" required>
+          <mat-hint [controlError]="errors('email')" [touched]="touched('email')"></mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="16px" class="profile-row">
+        <mat-form-field class="profile-field">
+          <mat-label>Имя</mat-label>
+          <input matInput placeholder="Введите имя" formControlName="firstName">
+          <mat-hint [controlError]="errors('firstName')" [touched]="touched('firstName')"></mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="profile-field">
+          <mat-label>Фамилия</mat-label>
+          <input matInput placeholder="Введите фамилию" formControlName="lastName">
+          <mat-hint [controlError]="errors('lastName')" [touched]="touched('lastName')"></mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="16px" class="profile-row">
+        <mat-form-field class="profile-field">
+          <mat-label>Отчество</mat-label>
+          <input matInput placeholder="Введите отчество" formControlName="middleName">
+          <mat-hint [controlError]="errors('middleName')" [touched]="touched('middleName')"></mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="profile-field">
+          <mat-label>Дата рождения</mat-label>
+          <input matInput placeholder="Выберите дату" formControlName="birthday" [matDatepicker]="birthdayDatepicker">
+          <mat-hint [controlError]="errors('birthday')" [touched]="touched('birthday')"></mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="birthdayDatepicker"></mat-datepicker-toggle>
+          <mat-datepicker #birthdayDatepicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="16px" class="profile-row">
+        <mat-form-field class="profile-field">
+          <mat-label>Мобильный телефон</mat-label>
+          <input matInput placeholder="Введите мобильный телефон" formControlName="mobile" phoneMask>
+          <mat-hint [controlError]="errors('mobile')" [touched]="touched('mobile')"></mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="profile-field">
+          <mat-label>Рабочий телефон</mat-label>
+          <input matInput placeholder="Введите рабочий телефон" formControlName="phone">
+          <mat-hint [controlError]="errors('phone')" [touched]="touched('phone')"></mat-hint>
+        </mat-form-field>
+      </div>
+    </form>
+
+    <div fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="8px">
+      <button mat-stroked-button color="primary" type="button" (click)="cancelEdit()">
+        Отмена
+      </button>
+      <button mat-flat-button color="accent" type="button" (click)="openChangePasswordDialog()">
+        Новый пароль
+      </button>
+      <button mat-flat-button color="primary" type="button" (click)="saveProfile()">
+        Сохранить
+      </button>
+    </div>
+  </div>
+</div>

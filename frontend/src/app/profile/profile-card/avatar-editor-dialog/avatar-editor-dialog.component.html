@@ -1,0 +1,27 @@
+<mat-card fxLayout="column">
+  <mat-card-title fxLayout="row" fxLayoutAlign="flex-start center">
+    <span fxFlex>Редактирование изображения</span>
+    <button mat-icon-button type="button" color="warn" mat-dialog-close
+            matTooltip="Отмена" matTooltipClass="custom-tooltip">
+      <mat-icon>close</mat-icon>
+    </button>
+    <button mat-icon-button type="button" color="primary" [mat-dialog-close]="uploadedAvatar"
+            matTooltip="Сохранить" matTooltipClass="custom-tooltip">
+      <mat-icon>done</mat-icon>
+    </button>
+  </mat-card-title>
+  <mat-card-content class="avatar-container" fxLayout="row" fxLayoutAlign="center center">
+    <image-cropper class="avatar-image-cropper"
+                   [imageChangedEvent]="imageChangedEvent"
+                   [maintainAspectRatio]="true"
+                   [aspectRatio]="1"
+                   [resizeToWidth]="250"
+                   [cropperMinWidth]="250"
+                   [onlyScaleDown]="true"
+                   [roundCropper]="false"
+                   format="png"
+                   outputType="file"
+                   (imageCropped)="imageCropped($event)"
+    ></image-cropper>
+  </mat-card-content>
+</mat-card>

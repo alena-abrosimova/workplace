@@ -1,0 +1,108 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+
+$custom-primary-palette: (
+  50: #778392,
+  100: #778392,
+  200: #5b6778,
+  300: #778392,
+  400: #778392,
+  500: #778392,
+  600: #778392,
+  700: #778392,
+  800: #778392,
+  900: #778392,
+  A100: #778392,
+  A200: #778392,
+  A400: #778392,
+  A700: #778392,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $light-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$custom-accent-palette: (
+  50: #c7a3a3,
+  100: #c7a3a3,
+  200: #d26e6e,
+  300: #c7a3a3,
+  400: #c7a3a3,
+  500: #c7a3a3,
+  600: #c7a3a3,
+  700: #c7a3a3,
+  800: #c7a3a3,
+  900: #c7a3a3,
+  A100: #c7a3a3,
+  A200: #c7a3a3,
+  A400: #c7a3a3,
+  A700: #c7a3a3,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $light-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$custom-primary: mat-palette($custom-primary-palette, 200);
+$custom-accent: mat-palette($custom-accent-palette, 200);
+
+$custom-theme: mat-light-theme($custom-primary, $custom-accent);
+
+@include angular-material-theme($custom-theme);
+
+/* You can add global styles to this file, and also import other style files */
+@import "~roboto-fontface/css/roboto/roboto-fontface.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~ng-project-helper/lib/style";
+@import "~ngx-toastr/toastr.css";
+
+@import "./assets/styles/custom";
+@import "./assets/styles/reset";
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: whitesmoke;
+}

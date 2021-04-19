@@ -1,0 +1,29 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" class="margin-bot16">
+  <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="flex-start center">
+    <span class="default-label bold font-size120">Тип отчёта:</span>
+    <mat-radio-group fxLayoutGap="16px" [(ngModel)]="filter.type" class="form-radio-group">
+      <mat-radio-button *ngFor="let item of reportTypes" [value]="item.value">{{item.label}}</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <button mat-stroked-button color="accent" type="button" (click)="checkFilterAndGenerateReport()">Сформировать</button>
+</div>
+<div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="flex-start center">
+  <mat-form-field fxFlex="240px">
+    <mat-label>Тип диапазона</mat-label>
+    <mat-select [formControl]="diapasonCtrl">
+      <mat-option *ngFor="let item of diapasonTypes" [value]="item.value">{{item.label}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field fxFlex="280px" *ngIf="diapasonCtrl.value === diapasonType.Custom; else month">
+    <mat-label>Выберите период</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate [(ngModel)]="filter.start" placeholder="Начало">
+      <input matEndDate [(ngModel)]="filter.end" placeholder="Конец">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+  <ng-template #month>
+    <month-field label="Месяц" [(date)]="filter.start" (dateChange)="setEndDate($event)"></month-field>
+  </ng-template>
+</div>

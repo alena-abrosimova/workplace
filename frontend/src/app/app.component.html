@@ -1,0 +1,13 @@
+<div fxLayout="column" class="content-container">
+  <app-header *ngIf="isWithHeader"></app-header>
+  <div fxLayout="row" fxFlex>
+    <app-sidebar *ngIf="isWithSidebar"></app-sidebar>
+    <div fxFlex [ngClass]="{
+    'default-width-with-sidebar': isWithSidebar,
+    'default-width-without-sidebar': !isWithSidebar
+    }">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+

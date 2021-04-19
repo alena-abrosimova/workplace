@@ -1,0 +1,76 @@
+<div fxLayout="column" fxLayoutGap="16px" class="side-padding16 top-bot-padding12">
+  <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="flex-start center">
+    <mat-label fxFlex="200px" class="default-label bold">Дата начала (отчёт)</mat-label>
+    <mat-form-field fxFlex="180px" class="simple-field">
+      <mat-label>C</mat-label>
+      <input matInput [(ngModel)]="filters.started_from" [matDatepicker]="startFromDatePicker">
+      <button *ngIf="!!filters.started_from" matSuffix mat-icon-button color="primary" stopPropagation
+              (click)="clearParam('started_from')">
+        <mat-icon>clear</mat-icon>
+      </button>
+      <mat-datepicker-toggle matSuffix [for]="startFromDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startFromDatePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field fxFlex="180px" class="simple-field">
+      <mat-label>По</mat-label>
+      <input matInput [(ngModel)]="filters.started_to" [matDatepicker]="startToDatePicker">
+      <button *ngIf="!!filters.started_to" matSuffix mat-icon-button color="primary" stopPropagation
+              (click)="clearParam('started_to')">
+        <mat-icon>clear</mat-icon>
+      </button>
+      <mat-datepicker-toggle matSuffix [for]="startToDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startToDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="flex-start center">
+    <mat-label fxFlex="200px" class="default-label bold">Дата окончания (отчёт)</mat-label>
+    <mat-form-field fxFlex="180px" class="simple-field">
+      <mat-label>C</mat-label>
+      <input matInput [(ngModel)]="filters.ended_from" [matDatepicker]="endFromDatePicker">
+      <button *ngIf="!!filters.ended_from" matSuffix mat-icon-button color="primary" stopPropagation
+              (click)="clearParam('ended_from')">
+        <mat-icon>clear</mat-icon>
+      </button>
+      <mat-datepicker-toggle matSuffix [for]="endFromDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endFromDatePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field fxFlex="180px" class="simple-field">
+      <mat-label>По</mat-label>
+      <input matInput [(ngModel)]="filters.ended_to" [matDatepicker]="endToDatePicker">
+      <button *ngIf="!!filters.ended_to" matSuffix mat-icon-button color="primary" stopPropagation
+              (click)="clearParam('ended_to')">
+        <mat-icon>clear</mat-icon>
+      </button>
+      <mat-datepicker-toggle matSuffix [for]="endToDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endToDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="flex-start center">
+    <mat-label fxFlex="200px" class="default-label bold">Дата создания</mat-label>
+    <mat-form-field fxFlex="180px" class="simple-field">
+      <mat-label>C</mat-label>
+      <input matInput [(ngModel)]="filters.created_from" [matDatepicker]="createFromDatePicker">
+      <button *ngIf="!!filters.created_from" matSuffix mat-icon-button color="primary" stopPropagation
+              (click)="clearParam('created_from')">
+        <mat-icon>clear</mat-icon>
+      </button>
+      <mat-datepicker-toggle matSuffix [for]="createFromDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #createFromDatePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field fxFlex="180px" class="simple-field">
+      <mat-label>По</mat-label>
+      <input matInput [(ngModel)]="filters.created_to" [matDatepicker]="createToDatePicker">
+      <button *ngIf="!!filters.created_to" matSuffix mat-icon-button color="primary" stopPropagation
+              (click)="clearParam('created_to')">
+        <mat-icon>clear</mat-icon>
+      </button>
+      <mat-datepicker-toggle matSuffix [for]="createToDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #createToDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="flex-end center">
+    <button mat-stroked-button color="primary" type="button" (click)="clearFilters()">Сбросить все</button>
+    <button mat-flat-button color="accent" type="button" (click)="applyFilters()">Применить</button>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+.avatar-container {
+  height: 20vh;
+
+  .avatar-image {
+    height: 20vh;
+    width: 20vh;
+    border-radius: 50%;
+    position: fixed;
+    cursor: pointer;
+  }
+
+  .avatar-button {
+    height: 20vh;
+    width: calc(20vh + 40px);
+  }
+}
+

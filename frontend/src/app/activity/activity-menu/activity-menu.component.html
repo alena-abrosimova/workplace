@@ -1,0 +1,23 @@
+<div class="activity-menu">
+  <div fxLayout="column" fxLayoutGap="8px">
+    <button mat-fab color="primary" matTooltip="Добавить активность" matTooltipClass="default-tooltip" type="button"
+            (click)="openActivityDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-fab color="primary" matTooltip="Включить таймер" matTooltipClass="default-tooltip" type="button"
+            *ngIf="!timerDuration" (click)="startTimerAndCreate()">
+      <mat-icon>timer</mat-icon>
+    </button>
+    <button mat-fab color="primary" matTooltip="Остановить таймер" matTooltipClass="default-tooltip" type="button"
+            *ngIf="timerDuration" (click)="stopTimer()">
+      <mat-icon>stop</mat-icon>
+    </button>
+    <button mat-fab color="primary" matTooltip="Отчёты" matTooltipClass="default-tooltip" type="button"
+            (click)="openReportDialog()">
+      <mat-icon>assessment</mat-icon>
+    </button>
+  </div>
+  <ng-container *ngIf="timerDuration">
+    <span class="activity-timer-label">{{timerDuration | activityMenuTimer}}</span>
+  </ng-container>
+</div>

@@ -1,0 +1,29 @@
+.activity-menu {
+  padding-bottom: 16px;
+  padding-right: 16px;
+  position: fixed;
+  z-index: 1000;
+  bottom: 0;
+  right: 0;
+
+  button {
+    z-index: 1;
+  }
+
+  .activity-timer-label {
+    width: max-content;
+    width: -moz-max-content;
+    position: absolute;
+    right: 16px;
+    top: 64px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding-right: 72px;
+    padding-left: 16px;
+    color: white;
+    border-radius: 50px;
+    background-color: rgba(91, 103, 120, 0.7);
+    z-index: 0;
+  }
+}

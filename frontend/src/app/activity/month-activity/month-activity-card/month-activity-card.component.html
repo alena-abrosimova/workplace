@@ -1,0 +1,39 @@
+<div class="activity-container">
+  <div class="activity-header" fxLayout="row">
+    <div fxLayout="column" fxLayoutAlign="center center" *ngFor="let week of weekLabels" class="header-cell">
+      <span>{{week.label}}</span>
+    </div>
+  </div>
+  <div fxLayout="row" class="activity-table">
+    <div fxFlex="30px">
+      <div fxLayout="column" fxFlex>
+        <div fxLayout="row" *ngFor="let week of weekList" class="week-row" [ngStyle]="{'height': weekRowLength}">
+          <div fxLayoutAlign="center center" class="week-cell">{{ week.label }}</div>
+          <div fxLayoutAlign="center flex-start" class="week-cell day" *ngFor="let day of week.days"
+               (click)="addActivity(day)">
+            <span class="day-label">{{day | formatDate: dayFormat}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div fxFlex>
+      <div fxLayout="column" fxFlex>
+        <div fxLayout="row" *ngFor="let week of monthActivities" class="activity-row"
+             [ngStyle]="{'height': weekRowLength}">
+          <div class="activity-cell" *ngFor="let day of week.days">
+          <div fxLayout="column" fxLayoutAlign="flex-start">
+            <span class="cell-{{day.day}}" *ngFor="let activity of day.activities" (click)="openViewDialog(activity)">
+              {{activity.label}}
+            </span>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div fxLayout="row" class="default-activity-loading" fxLayoutAlign="center center" *ngIf="!monthActivities">
+  <mat-spinner color="primary" [diameter]="80" [strokeWidth]="2"></mat-spinner>
+</div>
+

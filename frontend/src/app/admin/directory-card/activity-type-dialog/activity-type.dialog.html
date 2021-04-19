@@ -1,0 +1,31 @@
+<mat-card fxLayout="column">
+  <mat-card-title>Вид работы. {{ item?.id ? 'Просмотр' : 'Создание' }} записи</mat-card-title>
+  <mat-card-content class="default-dialog-container form">
+    <form role="form" [formGroup]="cardForm" fxLayout="column" fxLayoutGap="8px">
+      <mat-form-field>
+        <mat-label>Наименование</mat-label>
+        <input matInput formControlName="name" required>
+        <mat-hint [controlError]="errors('name')" [touched]="touched('name')"></mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Направление</mat-label>
+        <mat-select formControlName="direction" required multiple defaultEqual>
+          <search-option #directionSearch></search-option>
+          <ng-container [entitiesSearch]="directionSearch.query" [entitiesParams]="directionParams"
+                        (getEntities)="directions$ = $event">
+            <mat-option *ngFor="let directionItem of directions$ | async" [value]="directionItem">
+              <span [innerHTML]="directionItem.name | highlight : directionSearch.query"></span>
+            </mat-option>
+          </ng-container>
+          <multi-option></multi-option>
+        </mat-select>
+        <mat-hint [controlError]="errors('direction')" [touched]="touched('direction')"></mat-hint>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="8px">
+    <button mat-stroked-button color="primary" mat-dialog-close>Отмена</button>
+    <button mat-flat-button color="primary" [disabled]="!formValid"
+            [mat-dialog-close]="formValue">{{item?.id ? 'Сохранить' : 'Добавить' }}</button>
+  </mat-card-actions>
+</mat-card>

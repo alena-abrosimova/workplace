@@ -1,0 +1,41 @@
+<div fxLayout="row" class="activity-container" [scrollTop]="scrollTop">
+  <div fxFlex="64px">
+    <div fxLayout="column">
+      <div fxLayoutAlign="flex-start center" *ngFor="let time of timeArray" class="hour-row"
+           [ngStyle]="{'height': time.height + 'px'}"
+           (click)="checkTimeAndAdd(currentDate, time.start)">
+        {{ time.start }}
+      </div>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <div fxLayout="column" fxLayoutAlign="flex-start center" [scrollTop]="scrollTop">
+      <div fxLayout="column" fxLayoutAlign="center center" (click)="openViewDialog(activity)"
+           *ngFor="let activity of activities" class="activity-row"
+           [ngStyle]="{
+           'height': activity.height,
+           'margin-bottom': activity.marginBottom,
+           'margin-top': activity.marginTop,
+           'background-color': activity.backgroundColor
+           }">
+        <span fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="center center" class="activity-header">
+          <span class="label">Время:</span>
+          <span>{{ activity.start }} - {{activity.end}}</span>
+          <span class="label" *ngIf="activity.project">Проект:</span>
+          <span *ngIf="activity.project">{{ activity.project.name }}</span>
+          <span class="label" *ngIf="activity.direction">Направление:</span>
+          <span *ngIf="activity.direction">{{ activity.direction.name }}</span>
+          <span class="label" *ngIf="activity.type">Вид работы:</span>
+          <span *ngIf="activity.type">{{ activity.type.name }}</span>
+        </span>
+        <div class="activity-description" *ngIf="activity.duration >= 40">{{ activity.description }}</div>
+        <div class="activity-description-mobile">{{ activity.description }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div fxLayout="row" class="default-activity-loading" fxLayoutAlign="center center" *ngIf="!activities">
+  <mat-spinner color="primary" [diameter]="80" [strokeWidth]="2"></mat-spinner>
+</div>
+

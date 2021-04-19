@@ -1,0 +1,91 @@
+<form role="form" [formGroup]="cardForm" fxLayout="column" fxLayoutGap="8px">
+  <div fxLayout="row" fxLayoutGap="8px">
+    <mat-form-field fxFlex="160px">
+      <mat-label>Дата</mat-label>
+      <input matInput [matDatepicker]="activityDatePicker" formControlName="activityDate" required>
+      <mat-datepicker-toggle matSuffix [for]="activityDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #activityDatePicker></mat-datepicker>
+      <mat-hint [controlError]="errors('activityDate')" [touched]="touched('activityDate')"></mat-hint>
+    </mat-form-field>
+    <mat-form-field fxFlex="128px">
+      <mat-label>С</mat-label>
+      <input type="time" matInput formControlName="start" required (ngModelChange)="checkTimes()">
+      <mat-hint [controlError]="errors('start')" [touched]="touched('start')"></mat-hint>
+      <mat-error *ngIf="errors('start')?.maxTime">Макс. время - {{getValue('end')}}</mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="128px">
+      <mat-label>По</mat-label>
+      <input type="time" matInput formControlName="end" required (ngModelChange)="checkTimes()">
+      <mat-hint [controlError]="errors('end')" [touched]="touched('end')"></mat-hint>
+      <mat-error *ngIf="errors('end')?.minTime">Мин. время - {{getValue('start')}}</mat-error>
+    </mat-form-field>
+    <mat-checkbox formControlName="withoutTask" class="default-form-checkbox"
+                  (change)="checkTaskOptions($event.checked)">Без задачи
+    </mat-checkbox>
+  </div>
+
+  <mat-form-field>
+    <mat-label>Описание</mat-label>
+    <textarea matInput matTextareaAutosize matAutosizeMaxRows="5" matAutosizeMinRows="1"
+              formControlName="description" placeholder="Введите описание"></textarea>
+    <mat-hint [controlError]="errors('description')" [touched]="touched('description')"></mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Проект</mat-label>
+    <mat-select formControlName="project" required defaultEqual (selectionChange)="changeFilterControl('project')">
+      <search-option #projectSearch></search-option>
+      <ng-container [entitiesSearch]="projectSearch.query" [entitiesParams]="projectParams"
+                    (getEntities)="projects$ = $event">
+        <mat-option *ngFor="let projectItem of projects$ | async" [value]="projectItem"
+                    [innerHTML]="projectItem.name | highlight : projectSearch.query"></mat-option>
+      </ng-container>
+    </mat-select>
+    <button *ngIf="canClear('project')" matSuffix mat-icon-button color="primary"
+            (click)="changeFilterControl('project', true)" stopPropagation>
+      <mat-icon>clear</mat-icon>
+    </button>
+    <mat-hint [controlError]="errors('project')" [touched]="touched('project')"></mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Направление</mat-label>
+    <mat-select formControlName="direction" required defaultEqual (selectionChange)="changeFilterControl('direction')">
+      <search-option #directionSearch></search-option>
+      <ng-container [entitiesSearch]="directionSearch.query" [entitiesParams]="directionParams"
+                    (getEntities)="directions$ = $event">
+        <mat-option *ngFor="let projectItem of directions$ | async" [value]="projectItem"
+                    [innerHTML]="projectItem.name | highlight : directionSearch.query"></mat-option>
+      </ng-container>
+    </mat-select>
+    <button *ngIf="canClear('direction')" matSuffix mat-icon-button color="primary"
+            (click)="changeFilterControl('direction', true)" stopPropagation>
+      <mat-icon>clear</mat-icon>
+    </button>
+    <mat-hint [controlError]="errors('direction')" [touched]="touched('direction')"></mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Вид работы</mat-label>
+    <mat-select formControlName="type" required defaultEqual>
+      <search-option #typeSearch></search-option>
+      <ng-container [entitiesSearch]="typeSearch.query" [entitiesParams]="typeParams"
+                    (getEntities)="types$ = $event">
+        <mat-option *ngFor="let typeItem of types$ | async" [value]="typeItem"
+                    [innerHTML]="typeItem.name | highlight : typeSearch.query"></mat-option>
+      </ng-container>
+    </mat-select>
+    <button *ngIf="canClear('type')" matSuffix mat-icon-button color="primary" (click)="clear('type')" stopPropagation>
+      <mat-icon>clear</mat-icon>
+    </button>
+    <mat-hint [controlError]="errors('type')" [touched]="touched('type')"></mat-hint>
+  </mat-form-field>
+
+  <div fxLayout="row" fxLayoutGap="8px">
+    <mat-form-field fxFlex>
+      <mat-label>В рамках задачи</mat-label>
+      <input matInput formControlName="task">
+      <mat-hint [controlError]="errors('task')" [touched]="touched('task')"></mat-hint>
+    </mat-form-field>
+  </div>
+</form>

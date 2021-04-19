@@ -1,0 +1,9 @@
+.avatar-container {
+  max-height: 90vh;
+  min-height: 80vh;
+
+  .avatar-image-cropper {
+    max-height: 85vh;
+    max-width: 90vw;
+  }
+}

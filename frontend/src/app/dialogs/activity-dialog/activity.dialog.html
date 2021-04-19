@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-title *ngIf="!view">Активность. {{item.id ? 'Редактирование' : 'Создание'}}</mat-card-title>
+  <mat-card-content class="default-dialog-container form">
+    <ng-container *ngIf="view; else editMode">
+      <activity-dialog-view [item]="item"></activity-dialog-view>
+    </ng-container>
+    <ng-template #editMode>
+      <activity-dialog-form #editCard [item]="item"></activity-dialog-form>
+    </ng-template>
+  </mat-card-content>
+  <mat-card-actions fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="8px">
+    <button mat-stroked-button color="primary" type="button" mat-dialog-close>{{view ? 'Закрыть' : 'Отмена'}}</button>
+    <button mat-stroked-button color="warn" type="button" *ngIf="!!item.id" (click)="deleteItem()">Удалить</button>
+    <ng-container *ngIf="view; else editButtonMode">
+      <button mat-flat-button color="primary" type="button" (click)="view = false">
+        Редактировать
+      </button>
+    </ng-container>
+    <ng-template #editButtonMode>
+      <button mat-flat-button color="primary" type="button" (click)="saveItem()">
+        Сохранить
+      </button>
+    </ng-template>
+  </mat-card-actions>
+</mat-card>

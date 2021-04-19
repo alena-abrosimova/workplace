@@ -1,0 +1,13 @@
+.content-container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  margin: 0;
+}
+
+.default-width-with-sidebar {
+  width: calc(100vw - 60px);
+}
+.default-width-without-sidebar {
+  width: 100vw;
+}

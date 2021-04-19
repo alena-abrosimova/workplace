@@ -1,0 +1,21 @@
+<div class="default-page-container" fxLayout="column">
+  <ng-container *ngIf="directory; else noData">
+    <div class="default-page-header">
+      <span>{{directory.title}}</span>
+      <button mat-stroked-button color="primary" (click)="directoryCard?.editDirectory()">
+        <mat-icon>add</mat-icon>
+        Добавить
+      </button>
+    </div>
+    <ng-container [entitiesParams]="params" (getEntities)="items$ = $event">
+      <directory-card-table fxFlex fxLayout="column" #directoryCard [items]="items$ | async" [path]="directory.path"
+                            [displayedColumns]="directory.columns" [cls]="directory.cls"
+                            (itemsChange)="setEntitiesParams()"></directory-card-table>
+    </ng-container>
+  </ng-container>
+  <ng-template #noData>
+    <div fxFlex class="default-no-data">Упс.. Такого справочника нет</div>
+  </ng-template>
+</div>
+
+

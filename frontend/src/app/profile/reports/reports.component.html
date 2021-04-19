@@ -1,0 +1,18 @@
+<div class="default-page-container" fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="12px" class="default-page-header">
+    <span>Сформированные отчёты</span>
+    <button mat-icon-button color="accent" type="button" [matMenuTriggerFor]="filterMenu"
+            [matBadge]="filters.filtersCount" matBadgeColor="primary" [matBadgeHidden]="!filters.filtersCount"
+            matTooltip="Фильтры" matTooltipClass="custom-tooltip">
+      <mat-icon>tune</mat-icon>
+    </button>
+    <mat-menu #filterMenu="matMenu" xPosition="before">
+      <reports-filters [(filters)]="filters" (search)="resetReportParams($event)"></reports-filters>
+    </mat-menu>
+  </div>
+
+  <ng-container [entitiesParams]="params" (getEntities)="reports$ = $event" (countChange)="setLength($event)">
+    <reports-table fxFlex fxLayout="column" [items]="reports$ | async" [(params)]="filters"
+                   (paramsChange)="resetReportParams(false)"></reports-table>
+  </ng-container>
+</div>

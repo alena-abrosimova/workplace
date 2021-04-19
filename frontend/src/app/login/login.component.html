@@ -1,0 +1,28 @@
+<div class="login-container" fxLayout="column" fxLayoutAlign="center center">
+  <div class="login-form" fxLayout="column" fxLayoutAlign="center center">
+    <form role="form" [formGroup]="loginForm" fxLayout="column" fxLayoutGap="8px">
+      <div fxLayout="row" class="field-row">
+        <mat-form-field floatLabel="always" fxFlex>
+          <mat-label>Логин</mat-label>
+          <input matInput placeholder="Введите логин" formControlName="username" required>
+          <mat-error *ngIf="username.invalid && password.hasError('required')">Обязательное поле</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" class="field-row">
+        <mat-form-field floatLabel="always" fxFlex>
+          <mat-label>Пароль</mat-label>
+          <input matInput placeholder="Введите пароль" formControlName="password" required
+                 [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="password.invalid && password.hasError('minlength')">Минимум 6 символов</mat-error>
+          <mat-error *ngIf="password.invalid && password.hasError('required')">Обязательное поле</mat-error>
+        </mat-form-field>
+      </div>
+      <button mat-flat-button type="submit" color="accent" (click)="login()">ВОЙТИ</button>
+    </form>
+  </div>
+</div>

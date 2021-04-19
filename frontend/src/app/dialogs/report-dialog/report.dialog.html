@@ -1,0 +1,28 @@
+<mat-card [ngClass]="{'report-dialog-card': minimize}">
+  <mat-card-title fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="8px">
+    <span fxFlex *ngIf="!minimize || !results?.length; else miniInfo">Формирование отчёта</span>
+    <ng-template #miniInfo>
+      <div fxFlex fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="8px">
+        <span>Готово к скачиванию:</span>
+        <span>
+          {{getResultsNumber(state.success) + getResultsNumber(state.error)}}
+          из {{getResultsNumber()}}</span>
+      </div>
+    </ng-template>
+    <button mat-icon-button [matTooltip]="minimize ? 'Развернуть' : 'Свернуть'" matTooltipClass="default-tooltip"
+            [color]="minimize ? undefined : 'primary'" (click)="minimize = !minimize">
+      <mat-icon>{{minimize ? 'open_in_new' : 'remove'}}</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Закрыть" matTooltipClass="default-tooltip"
+            [color]="minimize ? undefined : 'warn'" mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-title>
+  <mat-card-content fxLayout="column" class="default-dialog-container without-overflow">
+    <report-dialog-form (generate)="generateReport($event)"></report-dialog-form>
+    <div fxLayout="column" class="with-overflow">
+      <report-dialog-item *ngFor="let item of results; let idx = index" [item]="item"
+                                 (deleteEvent)="deleteItem(item.id, idx)"></report-dialog-item>
+    </div>
+  </mat-card-content>
+</mat-card>

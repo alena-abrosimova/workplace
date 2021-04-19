@@ -1,0 +1,7 @@
+<div class="default-page-container" fxLayout="column" fxLayoutAlign="center center">
+  <div fxLayout="row" fxLayoutAlign="space-around center" class="full-width">
+    <ng-container *ngFor="let directory of directories">
+      <a class="default-tiles" fxFlex="30%" routerLink="/admin/directory/{{directory.id}}">{{directory.title}}</a>
+    </ng-container>
+  </div>
+</div>

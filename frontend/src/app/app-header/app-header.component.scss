@@ -1,0 +1,93 @@
+.header-toolbar {
+  color: white;
+  height: 56px;
+
+  .toolbar-menu-button {
+    display: none !important;
+  }
+
+  .toolbar-button, .toolbar-icon-button {
+    height: 56px;
+    padding: 0 8px 0 8px;
+    cursor: pointer;
+    opacity: 0.8;
+
+    &.current, &:hover {
+      opacity: 1;
+    }
+
+    &.current {
+      border-bottom: 2px solid white;
+    }
+  }
+
+  .header-login, .toolbar-button, .toolbar-icon-button {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: 400;
+  }
+
+  .header-login {
+    cursor: default;
+    padding-right: 16px;
+  }
+}
+
+.sidenav-container {
+  display: none !important;
+}
+
+@media screen and (max-width: 1000px) {
+  .header-toolbar {
+    padding: 0 4px;
+    height: 44px;
+
+    .toolbar-button {
+      display: none !important;
+    }
+
+    .toolbar-menu-button {
+      padding: 0 8px 0 8px;
+      display: flex !important;
+      height: 44px;
+    }
+
+    .toolbar-icon-button {
+      height: 44px;
+    }
+
+    .header-login, .toolbar-button, .toolbar-icon-button {
+      font-weight: 500;
+      font-size: 0.67em;
+    }
+  }
+
+  .sidenav-container {
+    display: block !important;
+    position: inherit !important;
+
+    ::ng-deep .mat-drawer-backdrop, .mat-drawer {
+      top: 44px !important;
+    }
+
+    .mat-drawer {
+      background: #5b6778;
+      width: 150px;
+
+      .toolbar-button {
+        text-transform: uppercase;
+        font-size: 15px;
+        font-weight: 400;
+        height: 44px;
+        cursor: pointer;
+        opacity: 0.7;
+
+        &.current {
+          opacity: 1;
+          border-bottom: 2px solid white;
+          border-top: 2px solid white;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<mat-form-field class="full-width">
+  <mat-label>{{label}}</mat-label>
+  <input matInput [matDatepicker]="datepicker" readonly [value]="date">
+  <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+  <mat-datepicker #datepicker startView="multi-year" (monthSelected)="selectMonth($event, datepicker)">
+  </mat-datepicker>
+</mat-form-field>

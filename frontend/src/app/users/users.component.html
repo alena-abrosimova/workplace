@@ -1,0 +1,25 @@
+<div class="default-page-container without-sidebar" fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="12px" class="default-page-header">
+    <mat-form-field floatLabel="never" class="simple-field margin-top-6" [fxFlex]="inputFlex">
+      <button matPrefix type="submit" mat-icon-button color="primary">
+        <mat-icon>search</mat-icon>
+      </button>
+      <input matInput placeholder="Найти" [(ngModel)]="search" (focusin)="inputFlex = 'auto'"
+             (blur)="inputFlex = '160px'">
+      <button matSuffix type="button" mat-icon-button color="primary" *ngIf="search" (click)="clearQuery()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </mat-form-field>
+    <ng-container *ngIf="isAdmin">
+      <button mat-flat-button color="primary" type="button" (click)="openUserDialog()">
+        Добавить
+      </button>
+    </ng-container>
+  </div>
+
+  <ng-container [entitiesParams]="userParams" (getEntities)="users$ = $event" [entitiesSearch]="search">
+    <users-list [users]="users$ | async" [isAdmin]="isAdmin"
+                (editUserEvent)="openUserDialog($event)" (deleteUserEvent)="openDeleteDialog($event)">
+    </users-list>
+  </ng-container>
+</div>

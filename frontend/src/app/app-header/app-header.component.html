@@ -1,0 +1,38 @@
+<mat-toolbar color="primary" class="header-toolbar" fxLayout="row" fxLayoutAlign="flex-start center">
+  <div fxFlex fxLayout="row">
+    <div class="toolbar-menu-button" fxLayoutAlign="center center" (click)="sidenav.toggle()">
+      <mat-icon>{{sidenav.opened ? 'clear' : 'menu' }}</mat-icon>
+    </div>
+    <a [ngClass]="{'toolbar-button': true, 'current': isState('activity')}" fxLayoutAlign="center center"
+       routerLink="/activity/day">
+      Активность</a>
+    <a [ngClass]="{'toolbar-button': true, 'current': isState('users')}" fxLayoutAlign="center center"
+       routerLink="/users">
+      Пользователи</a>
+    <a [ngClass]="{'toolbar-button': true, 'current': isState('admin')}" fxLayoutAlign="center center"
+       routerLink="/admin" *ngIf="isAdmin">
+      Администрирование</a>
+  </div>
+  <span class="header-login"> {{ greetingWords }} {{ userFirstName }} </span>
+  <a [ngClass]="{'toolbar-icon-button': true, 'current': isState('profile')}" fxLayoutAlign="center center"
+     matTooltip="Профиль пользователя" matTooltipClass="custom-tooltip" routerLink="/profile">
+    <mat-icon>account_circle</mat-icon>
+  </a>
+  <div class="toolbar-icon-button" fxLayoutAlign="center center" (click)="logout()"
+       matTooltip="Выход" matTooltipClass="custom-tooltip">
+    <mat-icon>exit_to_app</mat-icon>
+  </div>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over">
+    <a [ngClass]="{'toolbar-button': true, 'current': isState('activity/')}" fxLayoutAlign="center center"
+       routerLink="/activity/day">
+      Активность</a>
+    <a [ngClass]="{'toolbar-button': true, 'current': isState('users')}" fxLayoutAlign="center center"
+       routerLink="/users">
+      Пользователи</a>
+    <a [ngClass]="{'toolbar-button': true, 'current': isState('admin')}" fxLayoutAlign="center center"
+       routerLink="/admin">
+      Администрирование</a>
+  </mat-sidenav>
+</mat-sidenav-container>

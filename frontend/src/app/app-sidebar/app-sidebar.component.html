@@ -1,0 +1,45 @@
+<div fxLayout="column" [ngClass]="{'sidebar-container': true, 'hide': isState('activity')}">
+  <ng-container *ngIf="isState('admin')">
+    <a [ngClass]="{'sidebar-button': true, 'current': isRole('directory') || isState('directory')}"
+       routerLink="/admin/directory" fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="8px">
+      <mat-icon>{{
+        isRole('directory') || !isRole('directory') && !isState('directory')
+          ? 'font_download' : 'arrow_back'}}</mat-icon>
+      <p>Справочники</p>
+    </a>
+    <a [ngClass]="{'sidebar-button': true, 'current': isRole('settings')}"
+       routerLink="/admin/settings" fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="8px">
+      <mat-icon>settings</mat-icon>
+      <p>Настройки</p>
+    </a>
+  </ng-container>
+  <ng-container *ngIf="isState('activity')">
+    <a [ngClass]="{'sidebar-button': true, 'current': isRole('day')}" routerLink="/activity/day"
+       fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="8px">
+      <mat-icon>view_day</mat-icon>
+      <p>День</p>
+    </a>
+    <a [ngClass]="{'sidebar-button': true, 'current': isRole('week')}" routerLink="/activity/week"
+       fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="8px">
+      <mat-icon>view_week</mat-icon>
+      <p>Неделя</p>
+    </a>
+    <a [ngClass]="{'sidebar-button': true, 'current': isRole('month')}" routerLink="/activity/month"
+       fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="8px">
+      <mat-icon>view_comfy</mat-icon>
+      <p>Месяц</p>
+    </a>
+  </ng-container>
+  <ng-container *ngIf="isState('profile')">
+    <a [ngClass]="{'sidebar-button': true, 'current': isRole('card')}"
+       routerLink="/profile/card" fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="8px">
+      <mat-icon>account_circle</mat-icon>
+      <p>Профиль</p>
+    </a>
+    <a [ngClass]="{'sidebar-button': true, 'current': isRole('reports')}"
+       routerLink="/profile/reports" fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="8px">
+      <mat-icon>assessment</mat-icon>
+      <p>Отчёты</p>
+    </a>
+  </ng-container>
+</div>

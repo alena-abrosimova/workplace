@@ -1,0 +1,80 @@
+.activity-container {
+  height: calc(100vh - 124px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 8px 0;
+
+  .activity-row {
+    border: 1px solid white;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    z-index: 2;
+
+    .activity-header {
+      display: block;
+      font-style: italic;
+      width: 100% !important;
+
+      .label {
+        font-weight: 500;
+      }
+
+      span {
+        max-width: calc(33% - 100px) !important;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+
+    .activity-description {
+      max-height: 100%;
+      overflow: auto;
+      display: block !important;
+    }
+
+    .activity-description-mobile {
+      max-height: 100%;
+      overflow: auto;
+      display: none !important;
+    }
+  }
+
+  .hour-row {
+    border-bottom: 1px solid #e4e4e4;
+    width: calc(100vw - 172px);
+    padding-left: 12px;
+    cursor: pointer;
+    color: #373c44;
+    z-index: 1;
+  }
+
+  @media screen and (max-width: 1000px) {
+    height: calc(100vh - 120px);
+    padding: 0 0 8px 0;
+
+    .hour-row {
+      margin: 0 8px;
+      padding-left: 8px;
+      width: calc(100vw - 16px);
+    }
+
+    .activity-row {
+
+      .activity-header {
+        display: none !important;
+      }
+
+      .activity-description {
+        display: none !important;
+      }
+
+      .activity-description-mobile {
+        font-size: 0.9em;
+        display: block !important;
+      }
+    }
+  }
+}
+

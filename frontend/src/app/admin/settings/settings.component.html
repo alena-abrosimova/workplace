@@ -1,0 +1,36 @@
+<div class="default-page-container" fxLayout="column">
+  <div class="default-page-header">
+    <span>Настройки</span>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="12px">
+    <span class="default-label bold">Время окончания рабочего дня</span>
+    <mat-form-field class="simple-field" fxFlex="80px">
+      <input type="time" matInput [formControl]="timerEndedCtrl">
+    </mat-form-field>
+    <ng-container *ngIf="timerEndedCtrl.disabled">
+      <button mat-flat-button color="accent" type="button" [disabled]="!timerEndedCtrl.value"
+              (click)="timerEndedCtrl.enable()">
+        Изменить
+      </button>
+    </ng-container>
+    <ng-container *ngIf="timerEndedCtrl.enabled">
+      <button mat-flat-button color="accent" type="button" [disabled]="!timerEndedCtrl.value"
+              (click)="setTimerSaveParams()">Сохранить
+      </button>
+      <button mat-stroked-button color="primary" type="button" [disabled]="!timerEndedCtrl.value"
+              (click)="clearEnded()">Отмена
+      </button>
+    </ng-container>
+  </div>
+  <ng-container [saveEntity]="timerSettingsSaveParams" (getSavedEntity)="timerSettings$ = $event"
+                (saveResponse)="setTimerEnded($event)">
+  </ng-container>
+  <ng-container [entityParams]="timerSettingsParams" (getEntity)="timerSettings$ = $event"
+                (getEntityResponse)="setTimerEnded($event)">
+  </ng-container>
+  <ng-container *ngIf="timerSettings$ | async"></ng-container>
+</div>
+
+
+

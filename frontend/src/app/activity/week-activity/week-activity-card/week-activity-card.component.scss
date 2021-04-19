@@ -1,0 +1,157 @@
+.activity-container {
+  width: calc(100vw - 176px);
+  overflow: hidden;
+  padding: 8px;
+
+  .activity-header {
+    width: calc(100vw - 176px);
+    padding-right: 12px;
+    padding-left: 60px;
+
+    .header-cell {
+      background-color: #c8c8c8;
+      border-left: 1px solid #e4e4e4;
+      width: calc(100% / 7);
+      height: 40px;
+
+      &:first-child {
+        border-left: none;
+      }
+
+      .header-cell-date {
+        display: block !important;
+      }
+
+      .header-cell-date-mobile {
+        display: none !important;
+      }
+    }
+  }
+
+  .activity-table {
+    height: calc(100vh - 164px);
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .hour-column {
+      flex: 1 1 60px;
+      box-sizing: border-box;
+      max-width: 61px;
+      min-width: 61px;
+    }
+
+    .hour-row {
+      border-bottom: 1px solid #e4e4e4;
+      width: calc(100vw - 188px);
+      color: #373c44;
+      z-index: 1;
+
+      &.desktop {
+        display: flex !important;
+      }
+
+      &.mobile {
+        display: none !important;
+      }
+
+      .hour-cell {
+        place-content: center;
+        align-items: center;
+        cursor: default;
+        width: 61px;
+
+        &.week {
+          border-left: 1px solid #e4e4e4;
+          width: calc(100% / 7);
+          cursor: pointer;
+        }
+      }
+    }
+
+    .activity-column {
+      //padding-top: 8px;
+      width: calc((100% - 5px) / 7);
+
+      .activity-row {
+        border: 1px solid white;
+        border-radius: 8px;
+        cursor: pointer;
+        z-index: 2;
+
+        div {
+          word-break: break-word;
+          text-align: center;
+          max-height: 100%;
+          overflow: auto;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .activity-header {
+      width: calc(100vw - 16px);
+      padding-left: 30px;
+      padding-right: 0;
+
+      .header-cell {
+        width: calc((100vw - 220px) / 7);
+
+        .header-cell-date {
+          display: none !important;
+        }
+
+        .header-cell-date-mobile {
+          display: block !important;
+        }
+      }
+    }
+
+    .activity-table {
+      height: calc(100vh - 170px);
+
+      .hour-column {
+        flex: 1 1 27px;
+        box-sizing: border-box;
+        max-width: 27px;
+        min-width: 27px;
+      }
+
+      .hour-row {
+        width: calc(100vw - 16px);
+        padding: 0;
+
+        &.desktop {
+          display: none !important;
+        }
+
+        &.mobile {
+          display: flex !important;
+        }
+
+        .hour-cell {
+          place-content: center;
+          align-items: center;
+          width: 30px;
+
+          &.week {
+            width: calc(100% / 7);
+          }
+        }
+      }
+
+
+      .activity-column {
+
+        .activity-row {
+
+          div {
+            font-size: 0.7em;
+          }
+        }
+      }
+    }
+  }
+}
+
